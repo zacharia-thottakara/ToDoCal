@@ -39,7 +39,7 @@ class UsersController < ApplicationController
           redirect_to root_path, notice: "Account updated."
         end
       else
-        render: edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
       end
     else
       flash.now[:error] = "Incorrect password"
