@@ -1,0 +1,6 @@
+#!/bin/bash
+
+bundle update
+docker pull rnwood/smtp4dev:latest 
+./docker/smtpserver
+rails server
