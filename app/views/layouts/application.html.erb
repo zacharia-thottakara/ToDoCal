@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>ToDoCal</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: 'all' %>
     <%= javascript_importmap_tags %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        Signed in as: <%= current_user.email %> </br>
+        <%= button_to 'Sign out', logout_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Sign in', login_path %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
