@@ -11,14 +11,26 @@
   </head>
 
   <body>
-    <header>
-      <% if user_signed_in? %>
-        Signed in as: <%= current_user.email %> </br>
-        <%= button_to 'Sign out', logout_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Sign in', login_path %>
-      <% end %>
+    <header class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <%= link_to "ToDoCal", root_path, class: "navbar-brand"%>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li>Welcome <%= current_user.email %>! </li>
+              <li><%= link_to 'Account', account_path %> </li>
+              <li><%= button_to 'Sign out', logout_path, method: :delete, class: "btn btn-link"%></li>
+            <% else %>
+              <li><%= link_to 'Sign in', login_path, class: "btn btn-default" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
-    <%= yield %>
+    <section class="container">
+      <%= yield %>
+    </section>
   </body>
 </html>
