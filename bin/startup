@@ -1,6 +1,10 @@
 #!/bin/bash
 
 bundle update
-docker pull rnwood/smtp4dev:latest 
-./docker/smtpserver
+if [[ -r /var/run/docker.sock ]] ; then
+	docker pull rnwood/smtp4dev:latest 
+	./docker/smtpserver
+else
+	echo "Unable to access Docker Socket, please run 'sudo chmod 666 /var/dun/docker.sock' or contact your system administrator"
+fi
 rails server

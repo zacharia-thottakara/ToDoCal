@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run -d --restart=always --rm -p 3001:80 -p 2525:25 --name mailserver rnwood/smtp4dev
+docker run -d --restart=always -p 3001:80 -p 2525:25 --name mailserver rnwood/smtp4dev
