@@ -16,7 +16,7 @@ class ConfirmationsController < ApplicationController
     if @user.present? && @user.unconfirmed_or_reconfirming?
       if @user.confirm!
         login @user
-        redirect_to root_path, notice: "Thank you for confirming your email, registration is complete!"
+        redirect_to login_path, notice: "Thank you for confirming your email, registration is complete!"
       else
         redirect_to new_confirmation_path, alert: "Something went wrong, re-trying confirmation"
       end

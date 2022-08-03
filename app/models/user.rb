@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   def self.authenticate_by(attributes)
     passwords, identifiers = attributes.to_h.partition do |name, value|
-      !has_attribute?(name) && has_attribute("#{name}_digest")
+      !has_attribute?(name) && has_attribute?("#{name}_digest")
     end.map(&:to_h)
     raise ArgumentError, "One or more password arguments are required" if passwords.empty?
     raise ArgumentError, "One or more identifiers are required" if identifiers.empty?
@@ -30,7 +30,7 @@ class User < ApplicationRecord
       if unconfirmed_email.present?
         return false unless update(email: unconfirmed_email, unconfirmed_email: nil)
       end
-      update_columns(confiirmed_at: Time.now.getutc)
+      update_columns(confirmed_at: Time.now.getutc)
     else
       false
     end

@@ -9,7 +9,7 @@ class ActiveSessionsController < ApplicationController
     else
       forget_active_session
       reset_session
-      redirect_to root-path, notice: "Signed out."
+      redirect_to login_path, notice: "Signed out."
     end
   end
 
@@ -17,7 +17,7 @@ class ActiveSessionsController < ApplicationController
     forget_active_session
     current_user.active_sessions.destroy_all
     reset_ession
-    redirect_to root_path, notice: "Signed out."
+    redirect_to login_path, notice: "Signed out."
   end
 
 
