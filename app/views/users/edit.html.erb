@@ -1,5 +1,5 @@
 <%= form_with model: @user, url: account_path, method: :put do |form| %>
-  <h2>Update Account Credentials</h2>
+  <h2 class="text-center">Update Account Credentials</h2>
   <br>
   <%= render partial: "shared/form_errors", locals: { object: form.object } %>
   <div>
@@ -11,25 +11,25 @@
     <%= form.text_field :unconfirmed_email %>
   </div>
   <div>
-    <%= form.label :password, "Password (leave blank if you don't want to change it)" %>
+    <%= form.label :password,"Change Password"%>
     <%= form.password_field :password %>
   </div>
   <div>
-    <%= form.label :password_confirmation %>
+    <%= form.label :password_confirmation,"Confirm New Password" %>
     <%= form.password_field :password_confirmation %>
   </div>
-  <hr/>
+  </br></br>
   <div>
-    <%= form.label :current_password, "Current password (we need your current password to confirm your changes)" %>
+    <%= form.label :current_password, "Enter Current Password to confirm your changes" %>
     <%= form.password_field :current_password, required: true %>
   </div>
   <%= form.submit "Update Account" %>
-
-  <h2>Current Sessions</h2>
+  <%= button_to "Log out of all sessions", destroy_all_active_sessions_path, method: :delete %>
+  <hr/>
+  <h2 class="text-center">Current Sessions</h2>
   <% if @active_sessions.any? %>
-    <%= button_to "Log out of all sessions", destroy_all_active_sessions_path, method: :delete %>
-    <table>
-      <thead>
+    <table class="table table-bordered">
+      <thead class="well">
         <tr>
           <th>User Agent</th>
           <th>IP Address</th>
@@ -42,4 +42,5 @@
       </tbody>
     </table>
   <% end %>
+
 <% end %>
